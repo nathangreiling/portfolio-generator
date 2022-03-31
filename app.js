@@ -19,12 +19,33 @@ return inquirer.prompt([
     {
       type: 'input',
       name: 'github',
-      message: 'Enter github Username'
+      message: 'Enter github Username',
+      validate: githubInput => {
+        if (githubInput) {
+          return true;
+        } else {
+          console.log('please enter your username')
+          return false;
+        }
+      }
+    },
+    {
+      type: 'confirm',
+      name: 'confirmAbout',
+      message: 'Would you like to enter some information about yourself for an "About" section?',
+      default: true
     },
     {
       type:'input',
       name:'about',
-      message:'Provide info about self:'
+      message:'Provide info about self:',
+      when: ({ confrimAbout }) => {
+        if (confirmedAbout) {
+          return true;
+        } else {
+          return false;
+        }
+      }
     }
   ]);
 };
@@ -43,12 +64,28 @@ return inquirer.prompt([
       {
         type: 'input',
         name: 'name',
-        message: 'What is the name of your project?'
+        message: 'What is the name of your project?',
+        validate: nameInput => {
+          if (nameInput) {
+            return true;
+          } else {
+            console.log('please enter info');
+            return false;
+          }
+        }
       },
       {
         type: 'input',
         name: 'description',
-        message: 'Provide a description of the project (Required)'
+        message: 'Provide a description of the project (Required)',
+        validate: nameInput => {
+          if (nameInput) {
+            return true;
+          } else {
+            console.log('please enter info');
+            return false;
+          }
+        }
       },
       {
         type: 'checkbox',
@@ -59,7 +96,15 @@ return inquirer.prompt([
       {
         type: 'input',
         name: 'link',
-        message: 'Enter the GitHub link to your project. (Required)'
+        message: 'Enter the GitHub link to your project. (Required)',
+        validate: nameInput => {
+          if (nameInput) {
+            return true;
+          } else {
+            console.log('please enter info');
+            return false;
+          }
+        }
       },
       {
         type: 'confirm',
